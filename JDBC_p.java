@@ -4,6 +4,7 @@ import java.util.*;
 
 public class JDBC_p {
 	JDBC_p(){
+		int word_cnt = 0;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		}catch(ClassNotFoundException e) {
@@ -26,21 +27,25 @@ public class JDBC_p {
 		System.out.println("1.DB단어추가,2.DB단어출력");
 		int sel = sc.nextInt();
 		if(sel == 1) {
-			System.out.println("단어");
-			String Qus = sc.next();
-			System.out.println("정답=");
-			String Ans = sc.next();
-			try {
-				query = "insert into test values(?,?)";
-				pstmt = conn.prepareStatement(query);
-				pstmt.setString(1, Qus);
-				pstmt.setString(2, Ans);
-				pstmt.executeUpdate();
-				pstmt.close();
-				System.out.println("추가 완료");
-			}catch(SQLException e){
-				System.out.println("error"+e);
+			System.out.println("추가할 단어 개수");
+			word_cnt = sc.nextInt();
+				for(int i=0; i<word_cnt ;i++) {
+				System.out.println("단어");
+				String Qus = sc.next();
+				System.out.println("정답=");
+				String Ans = sc.next();
+				try {
+					query = "insert into test values(?,?)";
+					pstmt = conn.prepareStatement(query);
+					pstmt.setString(1, Qus);
+					pstmt.setString(2, Ans);
+					pstmt.executeUpdate();
+					pstmt.close();
+				}catch(SQLException e){
+					System.out.println("error"+e);
+				}
 			}
+			System.out.println("추가 완료");
 		}
 		else if(sel == 2) {
 			try {

@@ -14,15 +14,10 @@ public class word {
 		}
 		else if(sel == 2) {
 			System.out.println("1.DB단어 사용2.직접써서 사용");
+			System.out.println("시작 => //start");
 			int dis = scan.nextInt();
 			if(dis == 1) {
 				JDBC_cnt_pr JCP = new JDBC_cnt_pr();
-				String program = scan.next();
-				String DB_cnt = JCP.rs_cnt;
-				System.out.println(DB_cnt);
-				while(program.equals("//start")) {
-					
-				}
 			}
 			else if(dis == 2) {
 				int cnt=0;
